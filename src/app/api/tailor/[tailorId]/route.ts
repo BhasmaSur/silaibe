@@ -1,9 +1,16 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
-export async function GET(request: NextRequest, context: { params: { tailorId: string } }) {
-  const { params } = context;
-    const userId = params.tailorId;
+interface Params {
+  tailorId: string;
+}
+
+interface Context {
+  params: Params;
+}
+
+export async function GET(request: NextRequest, context: Context) {
+  const { tailorId: userId } = context.params;
   
     if (!userId) {
       return NextResponse.json(
