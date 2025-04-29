@@ -1,16 +1,16 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
-interface Params {
-  tailorId: string;
-}
+// interface Params {
+//   tailorId: string;
+// }
 
-interface Context {
-  params: Params;
-}
+// interface Context {
+//   params: Params;
+// }
 
-export async function GET(request: NextRequest, context: Context) {
-  const { tailorId: userId } = context.params;
+export async function GET(request: NextRequest, { params } : { params: Promise<{ tailorId: string }> }) {
+  const { tailorId: userId } = await params;
   
     if (!userId) {
       return NextResponse.json(
